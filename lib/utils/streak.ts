@@ -40,3 +40,57 @@ export function calculateStreak(logDates: string[]): number {
 
   return streak;
 }
+
+export function calculateLongestStreak(logDates: string[]): number {
+  if (!logDates || logDates.length === 0) return 0;
+
+  // Hapus duplikat dan urutkan descending
+  const uniqueDates = Array.from(new Set(logDates));
+  const sortedDates = uniqueDates.sort((a, b) => new Date(b).getTime() - new Date(a).getTime());
+
+  let longestStreak = 0;
+  let currentStreak = 1;
+  let currentDate = new Date(sortedDates[0]);
+
+  for (let i = 1; i < sortedDates.length; i++) {
+    const logDateStr = sortedDates[i];
+    const expectedDate = new Date(currentDate.getTime() - (currentDate.getTimezoneOffset() * 60000));
+    expectedDate.setDate(expectedDate.getDate() - 1);
+    const expectedDateStr = expectedDate.toISOString().split('T')[0];
+
+    if (logDateStr === expectedDateStr) {
+      currentStreak++;
+      currentDate = new Date(logDateStr);
+    } else {
+      if (currentStreak > longestStreak) longestStreak = currentStreak;
+      currentStreak = 1;
+      currentDate = new Date(logDateStr);
+    }
+  }
+
+  if (currentStreak > longestStreak) longestStreak = currentStreak;
+
+  return longestStreak;
+}
+
+export function calculateMonthlySuccessRate(logDates: string[]): number {
+  if (!logDates || logDates.length === 0) return 0;
+  
+  const today = new Date();
+  const thirtyDaysAgo = new Date(today);
+  thirtyDaysAgo.setDate(today.getDate() - 30);
+  thirtyDaysAgo.setHours(0, 0, 0, 0);
+
+  const uniqueDates = Array.from(new Set(logDates));
+  
+  let successDays = 0;
+  for (const dateStr of uniqueDates) {
+    const logDate = new Date(dateStr);
+    if (logDate >= thirtyDaysAgo && logDate <= today) {
+      successDays++;
+    }
+  }
+
+  // Rate in percentage, max 100%
+  return Math.round((successDays / 30) * 100);
+}

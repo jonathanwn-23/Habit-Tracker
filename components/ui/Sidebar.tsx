@@ -13,6 +13,9 @@ export function Sidebar() {
         <Link href="/habits" className="block rounded-lg px-4 py-2 text-sm font-medium text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900">
           Kelola Habit
         </Link>
+        <Link href="/settings" className="block rounded-lg px-4 py-2 text-sm font-medium text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900">
+          Pengaturan
+        </Link>
       </nav>
       <div className="border-t border-zinc-200 p-4">
         <form action="/api/auth/signout" method="POST">

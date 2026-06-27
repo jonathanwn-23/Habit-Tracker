@@ -24,8 +24,8 @@ export default async function SettingsPage() {
   return (
     <div className="mx-auto max-w-3xl space-y-8">
       <div>
-        <h1 className="text-3xl font-bold tracking-tight text-zinc-900">Pengaturan</h1>
-        <p className="mt-2 text-zinc-500">Kelola informasi profil dan akun Anda.</p>
+        <h1 className="text-3xl font-bold tracking-tight text-white">Pengaturan</h1>
+        <p className="mt-2 text-cyan-50">Kelola informasi profil dan akun Anda.</p>
       </div>
 
       <div className="grid gap-6">

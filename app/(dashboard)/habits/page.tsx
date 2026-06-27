@@ -77,7 +77,7 @@ export default async function HabitsPage({
                 <div className="flex items-center gap-3">
                   <div
                     className="h-4 w-4 rounded-full flex-shrink-0 shadow-sm"
-                    style={{ backgroundColor: habit.color || '#6366f1' }}
+                    style={{ backgroundColor: '#40c463' }}
                   />
                   <h3 className="font-semibold text-slate-900 line-clamp-1">{habit.name}</h3>
                 </div>

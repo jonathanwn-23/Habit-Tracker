@@ -3,6 +3,7 @@
 import { useOptimistic, useTransition } from 'react'
 import { HabitCard } from '@/components/habits/HabitCard'
 import { toggleHabitLog } from '@/app/(dashboard)/habits/actions'
+import { toast } from 'react-hot-toast'
 
 interface Habit {
   id: string
@@ -43,6 +44,7 @@ export function TodayChecklist({ habits, todayStr }: TodayChecklistProps) {
 
   const handleToggle = (habitId: string, currentChecked: boolean) => {
     const newChecked = !currentChecked
+    const habit = habits.find(h => h.id === habitId)
     
     // Update UI seketika
     toggleOptimisticHabit({ habitId, newChecked })
@@ -51,11 +53,12 @@ export function TodayChecklist({ habits, todayStr }: TodayChecklistProps) {
     startTransition(async () => {
       try {
         await toggleHabitLog(habitId, todayStr, newChecked)
+        if (newChecked) {
+          toast.success(`${habit?.name} diselesaikan!`, { icon: '🔥' })
+        }
       } catch (error) {
         console.error('Failed to toggle habit:', error)
-        // Note: useOptimistic will automatically revert if the server action fails 
-        // and re-renders with the original props (though we might need to handle 
-        // explicit error state if we want better UX).
+        toast.error('Gagal memperbarui status habit')
       }
     })
   }

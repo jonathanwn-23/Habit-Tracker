@@ -2,7 +2,7 @@ import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { HabitCalendar } from '@/components/habits/HabitCalendar'
-import { calculateStreak } from '@/lib/utils/streak'
+import { calculateStreak, calculateLongestStreak, calculateMonthlySuccessRate } from '@/lib/utils/streak'
 
 export default async function HabitDetailPage({ params }: { params: { id: string } }) {
   const supabase = await createClient()
@@ -12,8 +12,6 @@ export default async function HabitDetailPage({ params }: { params: { id: string
     redirect('/login')
   }
 
-  // Next.js 15+ usually requires awaiting params, but we are in Next 16 (assumed from PRD)
-  // We'll await params just in case since Next 15+ makes params a Promise.
   const resolvedParams = await Promise.resolve(params)
 
   const { data: habit } = await supabase
@@ -27,7 +25,6 @@ export default async function HabitDetailPage({ params }: { params: { id: string
     redirect('/dashboard')
   }
 
-  // Fetch all logs for this habit
   const { data: logs } = await supabase
     .from('habit_logs')
     .select('log_date')
@@ -36,6 +33,8 @@ export default async function HabitDetailPage({ params }: { params: { id: string
 
   const logDates = logs?.map(log => log.log_date) || []
   const currentStreak = calculateStreak(logDates)
+  const longestStreak = calculateLongestStreak(logDates)
+  const monthlySuccessRate = calculateMonthlySuccessRate(logDates)
   const totalCompleted = logDates.length
 
   return (
@@ -76,7 +75,7 @@ export default async function HabitDetailPage({ params }: { params: { id: string
       </div>
 
       {/* Stats Cards */}
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <div className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm">
           <div className="text-sm font-medium text-zinc-500">Streak Saat Ini</div>
           <div className="mt-2 flex items-baseline gap-2">
@@ -84,6 +83,23 @@ export default async function HabitDetailPage({ params }: { params: { id: string
             <span className="text-sm text-zinc-500">hari</span>
           </div>
         </div>
+        
+        <div className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm">
+          <div className="text-sm font-medium text-zinc-500">Streak Terpanjang</div>
+          <div className="mt-2 flex items-baseline gap-2">
+            <span className="text-4xl font-bold tracking-tight text-zinc-900">{longestStreak}</span>
+            <span className="text-sm text-zinc-500">hari</span>
+          </div>
+        </div>
+
+        <div className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm">
+          <div className="text-sm font-medium text-zinc-500">Sukses 30 Hari</div>
+          <div className="mt-2 flex items-baseline gap-2">
+            <span className="text-4xl font-bold tracking-tight text-zinc-900">{monthlySuccessRate}</span>
+            <span className="text-sm text-zinc-500">%</span>
+          </div>
+        </div>
+
         <div className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm">
           <div className="text-sm font-medium text-zinc-500">Total Check-in</div>
           <div className="mt-2 flex items-baseline gap-2">

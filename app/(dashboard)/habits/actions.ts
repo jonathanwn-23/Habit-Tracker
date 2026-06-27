@@ -79,6 +79,27 @@ export async function archiveHabit(id: string) {
   revalidatePath('/habits')
 }
 
+export async function restoreHabit(id: string) {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+
+  if (!user) {
+    throw new Error('Not authenticated')
+  }
+
+  const { error } = await supabase
+    .from('habits')
+    .update({ is_archived: false })
+    .eq('id', id)
+    .eq('user_id', user.id)
+
+  if (error) {
+    throw new Error('Failed to restore habit: ' + error.message)
+  }
+
+  revalidatePath('/habits')
+}
+
 export async function toggleHabitLog(habitId: string, logDate: string, isChecked: boolean) {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()

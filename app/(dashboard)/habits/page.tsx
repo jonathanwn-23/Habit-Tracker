@@ -63,8 +63,8 @@ export default async function HabitsPage({
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {!habits || habits.length === 0 ? (
-          <div className="col-span-full rounded-2xl border border-dashed border-slate-300 p-12 text-center">
-            <p className="text-sm text-slate-500">
+          <div className="col-span-full rounded-2xl border border-dashed border-white/30 p-12 text-center">
+            <p className="text-sm text-white">
               {isArchivedView 
                 ? 'Tidak ada habit di dalam arsip.' 
                 : 'Belum ada habit. Mulai buat sekarang!'}

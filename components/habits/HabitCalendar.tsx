@@ -122,13 +122,14 @@ export function HabitCalendar({ logs, color = '#6366f1' }: HabitCalendarProps) {
         </div>
         
         <div className="mt-4 flex items-center justify-end gap-2 text-xs text-slate-500">
-          <span>Sedikit</span>
-          <div className="h-3 w-3 rounded-[2px] bg-[#ebedf0]" />
-          <div className="h-3 w-3 rounded-[2px] bg-[#9be9a8]" />
-          <div className="h-3 w-3 rounded-[2px] bg-[#40c463]" />
-          <div className="h-3 w-3 rounded-[2px] bg-[#30a14e]" />
-          <div className="h-3 w-3 rounded-[2px] bg-[#216e39]" />
-          <span>Banyak</span>
+          <div className="flex items-center gap-1.5 mr-3">
+            <div className="h-3 w-3 rounded-[2px] bg-[#ebedf0]" />
+            <span>Belum</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <div className="h-3 w-3 rounded-[2px] bg-[#40c463]" />
+            <span>Selesai</span>
+          </div>
         </div>
       </div>
     </div>

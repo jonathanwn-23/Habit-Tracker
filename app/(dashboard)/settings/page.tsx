@@ -35,7 +35,7 @@ export default async function SettingsPage() {
             <h2 className="text-base font-semibold text-zinc-900">Profil Saya</h2>
             <p className="text-sm text-zinc-500">Informasi ini akan ditampilkan di dalam aplikasi.</p>
           </div>
-          
+
           <div className="p-6">
             <div className="flex items-center gap-6">
               <div className="flex h-20 w-20 flex-shrink-0 items-center justify-center rounded-full bg-indigo-100 text-xl font-bold text-indigo-700 overflow-hidden">

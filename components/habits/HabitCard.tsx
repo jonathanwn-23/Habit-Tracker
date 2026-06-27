@@ -1,6 +1,7 @@
 'use client'
 
 import { useTransition, useState } from 'react'
+import Link from 'next/link'
 
 interface HabitCardProps {
   habit: {
@@ -49,9 +50,11 @@ export function HabitCard({ habit, isCompleted, streak, onToggle, disabled }: Ha
                 className="h-3 w-3 rounded-full"
                 style={{ backgroundColor: habit.color || '#6366f1' }}
               />
-              <h3 className={`font-semibold text-zinc-900 transition-all ${isCompleted ? 'line-through text-zinc-500' : ''}`}>
-                {habit.name}
-              </h3>
+              <Link href={`/habits/${habit.id}`} className="hover:underline">
+                <h3 className={`font-semibold text-zinc-900 transition-all ${isCompleted ? 'line-through text-zinc-500' : ''}`}>
+                  {habit.name}
+                </h3>
+              </Link>
             </div>
             {habit.description && (
               <p className="mt-1 text-sm text-zinc-500">{habit.description}</p>

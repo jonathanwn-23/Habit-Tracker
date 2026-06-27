@@ -78,3 +78,46 @@ export async function archiveHabit(id: string) {
 
   revalidatePath('/habits')
 }
+
+export async function toggleHabitLog(habitId: string, logDate: string, isChecked: boolean) {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+
+  if (!user) {
+    throw new Error('Not authenticated')
+  }
+
+  // Verifikasi habit milik user
+  const { data: habit } = await supabase
+    .from('habits')
+    .select('id')
+    .eq('id', habitId)
+    .eq('user_id', user.id)
+    .single()
+
+  if (!habit) {
+    throw new Error('Habit not found or unauthorized')
+  }
+
+  if (isChecked) {
+    const { error } = await supabase
+      .from('habit_logs')
+      .insert({ habit_id: habitId, log_date: logDate })
+    
+    if (error && error.code !== '23505') { // Abaikan error duplikat jika sudah ada
+      throw new Error('Failed to check in: ' + error.message)
+    }
+  } else {
+    const { error } = await supabase
+      .from('habit_logs')
+      .delete()
+      .eq('habit_id', habitId)
+      .eq('log_date', logDate)
+
+    if (error) {
+      throw new Error('Failed to uncheck: ' + error.message)
+    }
+  }
+
+  revalidatePath('/dashboard')
+}

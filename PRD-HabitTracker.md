@@ -36,7 +36,7 @@ HabitTracker adalah aplikasi web berbasis SaaS yang membantu pengguna mencatat, 
 ## 2. Ruang Lingkup MVP (7 Hari)
 
 ### Yang MASUK dalam scope MVP:
-- Autentikasi via Google OAuth & Email/Password (Supabase Auth)
+- Autentikasi via Email/Password (Supabase Auth)
 - CRUD Habit (buat, lihat, edit, arsip)
 - Check-in harian (centang habit per hari)
 - Kalkulasi streak otomatis

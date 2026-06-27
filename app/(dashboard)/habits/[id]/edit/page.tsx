@@ -52,16 +52,8 @@ export default async function EditHabitPage({ params }: { params: Promise<{ id: 
           />
         </div>
 
-        <div>
-          <label htmlFor="color" className="block text-sm font-medium text-zinc-700">Warna</label>
-          <input
-            type="color"
-            name="color"
-            id="color"
-            defaultValue={habit.color || '#6366f1'}
-            className="mt-1 block h-10 w-full cursor-pointer rounded-xl border border-zinc-300 p-1"
-          />
-        </div>
+        {/* Input color di-hide dan diabaikan */}
+        <input type="hidden" name="color" value={habit.color || '#40c463'} />
 
         <button
           type="submit"

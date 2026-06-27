@@ -115,24 +115,19 @@ export function HabitCalendar({ logs, color = '#6366f1' }: HabitCalendarProps) {
               })}${day.isCompleted ? ' : Selesai' : ''}`}
               className="h-3 w-3 rounded-[2px] transition-colors"
               style={{
-                backgroundColor: day.isCompleted ? (color || '#6366f1') : '#e4e4e7',
-                opacity: day.isCompleted ? 1 : 0.5
+                backgroundColor: day.isCompleted ? '#40c463' : '#ebedf0',
               }}
             />
           ))}
         </div>
         
-        <div className="mt-4 flex items-center justify-end gap-2 text-xs text-zinc-500">
+        <div className="mt-4 flex items-center justify-end gap-2 text-xs text-slate-500">
           <span>Sedikit</span>
-          <div className="h-3 w-3 rounded-[2px] bg-zinc-200" />
-          <div 
-            className="h-3 w-3 rounded-[2px]" 
-            style={{ backgroundColor: color || '#6366f1', opacity: 0.5 }} 
-          />
-          <div 
-            className="h-3 w-3 rounded-[2px]" 
-            style={{ backgroundColor: color || '#6366f1' }} 
-          />
+          <div className="h-3 w-3 rounded-[2px] bg-[#ebedf0]" />
+          <div className="h-3 w-3 rounded-[2px] bg-[#9be9a8]" />
+          <div className="h-3 w-3 rounded-[2px] bg-[#40c463]" />
+          <div className="h-3 w-3 rounded-[2px] bg-[#30a14e]" />
+          <div className="h-3 w-3 rounded-[2px] bg-[#216e39]" />
           <span>Banyak</span>
         </div>
       </div>

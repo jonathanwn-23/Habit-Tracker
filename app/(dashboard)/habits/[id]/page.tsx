@@ -42,23 +42,19 @@ export default async function HabitDetailPage({ params }: { params: { id: string
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <Link href="/dashboard" className="text-sm font-medium text-zinc-500 hover:text-zinc-900">
+          <Link href="/dashboard" className="text-sm font-medium text-cyan-50 hover:text-white">
             &larr; Kembali ke Dashboard
           </Link>
           <div className="mt-4 flex items-center gap-4">
             <div 
-              className="flex h-16 w-16 items-center justify-center rounded-2xl text-3xl shadow-sm"
-              style={{ 
-                backgroundColor: (habit.color || '#6366f1') + '20',
-                color: habit.color || '#6366f1' 
-              }}
+              className="flex h-16 w-16 items-center justify-center rounded-2xl text-3xl shadow-sm bg-white text-[#40c463]"
             >
               {habit.icon || '🎯'}
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-zinc-900">{habit.name}</h1>
+              <h1 className="text-3xl font-bold text-white">{habit.name}</h1>
               {habit.description && (
-                <p className="mt-1 text-zinc-500">{habit.description}</p>
+                <p className="mt-1 text-cyan-50">{habit.description}</p>
               )}
             </div>
           </div>

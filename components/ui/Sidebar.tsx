@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
@@ -13,18 +14,28 @@ export function Sidebar() {
   const linkClass = (path: string) => 
     `block flex-1 md:flex-none rounded-lg md:px-4 py-2 text-center md:text-left text-sm font-medium transition-colors ${
       isActive(path) 
-        ? 'bg-indigo-50 text-indigo-700 md:bg-zinc-100 md:text-zinc-900' 
-        : 'text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900'
+        ? 'bg-cyan-500 text-white shadow-sm' 
+        : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
     }`
 
   return (
     <>
       {/* Desktop Sidebar */}
-      <div className="hidden md:flex h-full w-64 flex-col border-r border-zinc-200 bg-white shrink-0">
-        <div className="flex h-16 items-center px-6 border-b border-zinc-200">
-          <h1 className="text-xl font-bold text-indigo-600">HabitTracker</h1>
+      <div className="hidden md:flex h-full w-64 flex-col border-r border-slate-200 bg-white shrink-0 shadow-[4px_0_24px_rgba(0,0,0,0.02)]">
+        <div className="flex h-16 items-center px-6 border-b border-slate-100">
+          <div className="flex items-center gap-3">
+            <Image 
+              src="/logo.png" 
+              alt="HabitTracker Logo" 
+              width={32} 
+              height={32} 
+              className="rounded-lg shadow-sm"
+              priority
+            />
+            <h1 className="text-xl font-bold tracking-tight text-slate-900">HabitTracker</h1>
+          </div>
         </div>
-        <nav className="flex-1 space-y-1 px-4 py-4">
+        <nav className="flex-1 space-y-1.5 px-4 py-6">
           <Link href="/dashboard" className={linkClass('/dashboard')}>
             Dashboard
           </Link>
@@ -35,9 +46,9 @@ export function Sidebar() {
             Pengaturan
           </Link>
         </nav>
-        <div className="border-t border-zinc-200 p-4">
+        <div className="border-t border-slate-100 p-4 mb-4">
           <form action="/api/auth/signout" method="POST">
-            <button type="submit" className="block w-full rounded-lg px-4 py-2 text-left text-sm font-medium text-red-600 hover:bg-red-50">
+            <button type="submit" className="flex w-full items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold text-red-600 hover:bg-red-600 hover:text-white transition-colors">
               Keluar
             </button>
           </form>

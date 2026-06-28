@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Habit Tracker
 
-## Getting Started
+Sebuah aplikasi pelacak kebiasaan (habit tracker) sederhana untuk membantu Anda membangun kebiasaan baik dan mencapai tujuan Anda setiap hari.
 
-First, run the development server:
+##  Fitur Utama
+- **Tambah Kebiasaan Baru:** Catat kebiasaan yang ingin Anda bangun.
+- **Lacak Progres:** Centang kebiasaan yang sudah diselesaikan setiap harinya.
+- **Statistik Sederhana:** Lihat seberapa konsisten Anda menjalankan kebiasaan.
 
+##  Prasyarat
+Sebelum menginstal dan menjalankan aplikasi ini, pastikan Anda telah menginstal:
+- [Node.js](https://nodejs.org/) / Python / Java *(Silakan sesuaikan dengan teknologi yang Anda gunakan)*
+
+##  Cara Instalasi
+
+1. Clone repository ini ke komputer Anda:
+   ```bash
+   git clone https://github.com/username/habit_tracker.git
+   ```
+2. Masuk ke dalam direktori proyek:
+   ```bash
+   cd habit_tracker
+   ```
+3. Instal semua dependensi yang dibutuhkan:
+   ```bash
+   npm install
+   ```
+   *(Ubah perintah instalasi di atas sesuai dengan bahasa pemrograman yang Anda gunakan)*
+
+##  Cara Penggunaan
+Untuk menjalankan aplikasi secara lokal, jalankan perintah berikut:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm start
 ```
+*(Ubah perintah ini sesuai dengan cara menjalankan proyek Anda)*
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+##  Berkontribusi
+Jika Anda ingin berkontribusi pada proyek ini, silakan ikuti langkah-langkah berikut:
+1. Fork repository ini.
+2. Buat branch fitur baru (`git checkout -b fitur/FiturBaruAnda`).
+3. Commit perubahan Anda (`git commit -m 'Menambahkan FiturBaruAnda'`).
+4. Push ke branch tersebut (`git push origin fitur/FiturBaruAnda`).
+5. Buka Pull Request.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+##  Lisensi
+Proyek ini dilisensikan di bawah [MIT License](LICENSE) - lihat file LICENSE untuk detail lebih lanjut.
